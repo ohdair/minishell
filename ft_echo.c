@@ -1,34 +1,49 @@
-static void	ft_print(char **array, int starting_from)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 17:27:16 by jaewpark          #+#    #+#             */
+/*   Updated: 2022/05/04 17:43:59 by jaewpark         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#define SUCCESS 0
+#define FAIL 1
+typedef struct s_ast
 {
-	int	i;
+	char *content;
+	void *next;
+}	t_ast;
 
-	i = starting_from;
-	while (array[i])
-	{
-		if (i != starting_from)
-			printf(" ");
-		printf("%s", array[i++]);
-	}
-}
 
-void	ft_echo(t_state *state, t_cmd *current_cmd)
+int ft_echo(t_ast *ast)
 {
-	int	i;
+    t_ast   *cur;
+    int     option;
 
-	i = 1;
-	if (current_cmd->num_of_args >= 2)
-	{
-		if (!ft_strncmp(current_cmd->args[i], "-n", 3))
-		{
-			while (!ft_strncmp(current_cmd->args[i], "-n", 3))
-				i++;
-			if (current_cmd->num_of_args < 3)
-				return ;
-			ft_print(current_cmd->args, i);
-			return ;
-		}
-		ft_print(current_cmd->args, 1);
-	}
-	printf("\n");
-	state->status = 0;
+    option = 0;
+    if (!ast)
+    {
+        printf("\n");
+        return (0);
+    }
+    cur = ast;
+    while (ft_strncmp(cur->content, "-n", 3) == 0)
+    {
+        option = 1;
+        cur = cur->next;
+    }
+    while (cur)
+    {
+        printf("%s", cur->content);
+        cur = cur->next;
+        if (cur)
+            printf(" ");
+    }
+    if (option)
+        printf("\n");
+    return (0);
 }

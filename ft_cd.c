@@ -1,5 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 17:27:13 by jaewpark          #+#    #+#             */
+/*   Updated: 2022/05/04 17:28:22 by jaewpark         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <string.h>
+#include <errno.h>
+#include <limits.h>
 #define SUCCESS 0
 #define FAIL 1
+
 typedef struct s_ast
 {
 	char *content;
