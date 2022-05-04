@@ -6,7 +6,7 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:27:16 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/04 17:43:59 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/04 19:29:59 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ typedef struct s_ast
 	char *content;
 	void *next;
 }	t_ast;
-
 
 int ft_echo(t_ast *ast)
 {

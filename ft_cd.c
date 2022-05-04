@@ -6,7 +6,7 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:27:13 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/04 17:28:22 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/04 18:27:37 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct s_ast
 	void *next;
 }	t_ast;
 
+/* ft_strjoin 필요 */
+/* set_envp 필요 */
 static int	pwd_update(void)
 {
 	char	name[PATH_MAX];
@@ -41,6 +43,7 @@ static int	pwd_update(void)
 }
 
 /* 전역변수 env에서 home 읽어오기 */
+/* get_env_home 함수 필요 */
 int	ft_chdir_home()
 {
 	char	*path;
@@ -58,7 +61,7 @@ int	ft_chdir_home()
 	free(path);
 	return (stat);
 }
-
+/* ft_put_error 필수 */
 void	ft_put_cderror(char *dir_name)
 {
 	if (!dir_name)
