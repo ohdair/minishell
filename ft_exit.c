@@ -2,8 +2,6 @@
 #define FAIL 1
 #include <unistd.h>
 
-// STDERR_FILENO 2
-
 typedef struct s_ast
 {
 	char *content; 
