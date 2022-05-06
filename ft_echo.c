@@ -6,7 +6,7 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:27:16 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/04 19:29:59 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/06 19:57:25 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int ft_echo(t_ast *ast)
         option = 1;
         cur = cur->next;
     }
+    if (!cur)
+    {
+        printf("\n");
+        return (0);
+    }
     while (cur)
     {
         printf("%s", cur->content);
@@ -42,7 +47,7 @@ int ft_echo(t_ast *ast)
         if (cur)
             printf(" ");
     }
-    if (option)
+    if (!option)
         printf("\n");
     return (0);
 }
