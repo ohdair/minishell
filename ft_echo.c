@@ -6,17 +6,11 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:27:16 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/06 19:57:25 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/09 18:14:41 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define SUCCESS 0
-#define FAIL 1
-typedef struct s_ast
-{
-	char *content;
-	void *next;
-}	t_ast;
+#include "minishell.h"
 
 int ft_echo(t_ast *ast)
 {
@@ -33,7 +27,7 @@ int ft_echo(t_ast *ast)
     while (ft_strncmp(cur->content, "-n", 3) == 0)
     {
         option = 1;
-        cur = cur->next;
+        cur = cur->right;
     }
     if (!cur)
     {
@@ -43,7 +37,7 @@ int ft_echo(t_ast *ast)
     while (cur)
     {
         printf("%s", cur->content);
-        cur = cur->next;
+        cur = cur->right;
         if (cur)
             printf(" ");
     }

@@ -1,20 +1,37 @@
-#define SUCCESS 0
-#define FAIL 1
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/09 18:17:10 by jaewpark          #+#    #+#             */
+/*   Updated: 2022/05/09 19:18:28 by jaewpark         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct s_node
-{
-    char *content;
-    struct s_node *next;
-}   t_node;
+#include "minishell.h"
 
-int is_right(t_node *env)
+void    print_error(t_node *env)
 {
-    if (*(env->content)) // 영어 소문자, 대문자, _ 인지 확인
-        return (FAIL);
-    
-    while (*(env->content)) // 영어 소문자, 대문자, _, 숫자 인지 확인
+	ft_putstr_fd("minishell: unset: `", STDERR_FILENO);
+	ft_putstr_fd("'", STDERR_FILENO);
+	ft_putstr_fd(env->content, STDERR_FILENO);
+	ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
+}
+
+int is_env(t_node *env)
+{
+    if (!ft_isalpha(*(env->content)) && *(env->content) != '_')
     {
-        env = env->next;
+        printf("TRUE");
+        return (FAIL);
+    }
+    while (*(env->content))
+    {
+        if (!ft_isboth(*(env->content)) && *(env->content) != '_')
+            return (FAIL);
+        env->content++;
     }
     return (SUCCESS);
 }
@@ -27,13 +44,14 @@ int ft_unset(t_node *env)
     status = SUCCESS;
     while (env)
     {
-        if (!is_env(env))
+        if (is_env(env))
         {
             status = FAIL;
             print_error(env);
         }
         else
         {
+            // env 찾는 것과 환경변수 삭제하는 함수 필요
             node = find_env(env);
             remove(node);
         }

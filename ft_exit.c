@@ -1,13 +1,16 @@
-#define SUCCESS 0
-#define FAIL 1
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/09 18:17:49 by jaewpark          #+#    #+#             */
+/*   Updated: 2022/05/09 18:18:24 by jaewpark         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct s_ast
-{
-	char *content; 
-    void *prev;
-	void *next;
-}	t_ast;
+#include "minishell.h"
 
 static int	change_to_number(char *str)
 {
@@ -50,7 +53,7 @@ static int check_arg(t_ast *ast)
     else
     {
         exit_code = change_to_number(str);
-        if (ast->next)
+        if (ast->right)
         {
             ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 		    return (1);

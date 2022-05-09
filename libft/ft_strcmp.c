@@ -6,11 +6,11 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 18:11:52 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/03 18:12:08 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/09 18:13:09 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

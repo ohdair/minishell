@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 19:35:37 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/09 18:13:05 by jaewpark         ###   ########.fr       */
+/*   Created: 2022/05/09 16:19:09 by jaewpark          #+#    #+#             */
+/*   Updated: 2022/05/09 19:18:17 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strdup(char *s)
+static int  ft_strlen(char *s)
 {
-	char	*output;
-	int		i;
+    int len;
 
-	if (!s)
-		return (NULL);
-	output = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!output)
-		return (0);
-	i = -1;
-	while (s[++i])
-		output[i] = s[i];
-	output[i] = '\0';
-	return (output);
+    len = 0;
+    while (*s++)
+        len++;
+    return (len);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
 }

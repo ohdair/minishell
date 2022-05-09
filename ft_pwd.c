@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 19:35:37 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/09 18:13:05 by jaewpark         ###   ########.fr       */
+/*   Created: 2022/05/09 18:17:21 by jaewpark          #+#    #+#             */
+/*   Updated: 2022/05/09 18:17:22 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strdup(char *s)
+int	ft_pwd(void)
 {
-	char	*output;
-	int		i;
+	char	name[PATH_MAX];
+	int		status;
 
-	if (!s)
-		return (NULL);
-	output = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!output)
-		return (0);
-	i = -1;
-	while (s[++i])
-		output[i] = s[i];
-	output[i] = '\0';
-	return (output);
+	status = 0;
+	if (getcwd(name, PATH_MAX) == NULL)
+	{
+		ft_error_print("pwd", NULL, strerror(errno));
+		return (FAIL);
+	}
+	else
+    {
+		ft_putstr_fd(name, STDOUT_FILENO);
+        write(1, "\n", 1);
+    }
+	return (status);
 }

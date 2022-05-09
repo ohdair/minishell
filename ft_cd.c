@@ -6,15 +6,11 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:27:13 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/04 18:27:37 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/09 18:17:40 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
-#define SUCCESS 0
-#define FAIL 1
+#include "minishell.h"
 
 typedef struct s_ast
 {
