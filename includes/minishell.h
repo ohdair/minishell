@@ -6,7 +6,7 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:56:49 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/09 18:54:51 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:57:12 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int		ft_isdigit(int c);
 int		ft_isboth(int c);
 
 // builtin
-int	ft_chdir_update(t_ast *ast);
-int ft_echo(t_ast *ast);
-int ft_exit(t_ast *ast);
-int	ft_pwd(void);
-int ft_unset(t_node *env);
+int		ft_chdir_update(t_ast *ast);
+int		ft_echo(t_ast *ast);
+int		ft_exit(t_ast *ast);
+int		ft_pwd(void);
+int		ft_unset(t_node *env);
 
 #endif

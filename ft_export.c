@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 18:17:21 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/10 16:52:28 by jaewpark         ###   ########.fr       */
+/*   Created: 2022/05/10 17:01:28 by jaewpark          #+#    #+#             */
+/*   Updated: 2022/05/10 18:57:25 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(void)
+int	ft_export(t_node env)
 {
-	char	name[PATH_MAX];
-	int		status;
-
-	status = 0;
-	if (getcwd(name, PATH_MAX) == NULL)
-	{
-		ft_error_print("pwd", NULL, strerror(errno));
-		return (FAIL);
-	}
-	else
-	{
-		ft_putstr_fd(name, STDOUT_FILENO);
-		write(1, "\n", 1);
-	}
-	return (status);
+	
 }

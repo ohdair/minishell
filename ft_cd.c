@@ -6,17 +6,11 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:27:13 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/09 18:17:40 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:50:12 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-typedef struct s_ast
-{
-	char *content;
-	void *next;
-}	t_ast;
 
 /* ft_strjoin 필요 */
 /* set_envp 필요 */
@@ -40,7 +34,7 @@ static int	pwd_update(void)
 
 /* 전역변수 env에서 home 읽어오기 */
 /* get_env_home 함수 필요 */
-int	ft_chdir_home()
+int	ft_chdir_home(void)
 {
 	char	*path;
 	int		stat;
@@ -57,6 +51,7 @@ int	ft_chdir_home()
 	free(path);
 	return (stat);
 }
+
 /* ft_put_error 필수 */
 void	ft_put_cderror(char *dir_name)
 {
@@ -99,8 +94,9 @@ int	ft_chdir_update(t_ast *ast)
 /* ENOENT(2) :  No such file or directory */
 /* cd 인자가 없거나 "~"만 있는 경우 HOME으로 이동 */
 /* 그 외의 경우 chdir_update에서 확인 */
-int	ft_cd(t_ast *ast){
-    int	stat;
+int	ft_cd(t_ast *ast)
+{
+	int	stat;
 
 	stat = 0;
 	if (!ast || !ft_strcmp(ast, "~"))
