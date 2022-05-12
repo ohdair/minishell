@@ -6,7 +6,7 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:56:49 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/10 16:57:12 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:33:52 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define FAIL 1
 # define SUCCESS 0
 
+# define MALLOC_FAIL -2
+
 typedef struct s_ast
 {
 	char			*content;
@@ -45,6 +47,7 @@ typedef struct s_node
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(char *s);
+char	*ft_strchr(const char *s, int c);
 
 // type
 int		ft_isalpha(int c);

@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isboth.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 18:29:04 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/12 13:16:07 by jaewpark         ###   ########.fr       */
+/*   Created: 2022/05/12 13:57:13 by jaewpark          #+#    #+#             */
+/*   Updated: 2022/05/12 13:57:17 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int	ft_isboth(int c)
+char	*ft_strchr(const char *s, int c)
 {
-	return (ft_isdigit(c) || ft_isalpha(c));
+	while (*s != c)
+	{
+		if (*s == '\0')
+			return (0);
+		s++;
+	}
+	return ((char *)s);
 }
