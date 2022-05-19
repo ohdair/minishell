@@ -6,7 +6,7 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:56:49 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/12 17:33:52 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:47:42 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,38 @@
 
 # define MALLOC_FAIL -2
 
-typedef struct s_ast
+typedef struct			s_env
 {
-	char			*content;
-	struct s_ast	*left;
-	struct s_ast	*right;
-}	t_ast;
+	struct s_env		*next;
+	char				*key;
+	char				*value;
+}						t_env;
+
+typedef struct			s_astnode
+{
+	int type;
+	char *data;
+	struct s_astnode *left;
+	struct s_astnode *right;
+}						t_astnode;
 
 typedef struct s_node
 {
 	char			*content;
 	struct s_node	*next;
 }	t_node;
+
+typedef struct			s_info
+{
+	int					ret;
+	// t_history			*hist_lst;
+	// t_history			*hist_ptr;
+	t_env				*env;
+	struct termios		term_orig;
+	struct termios		term_mod;
+	// t_lexer				*lexerbuf;
+	t_astnode			*astnode;
+}						t_info;
 
 // libft
 void	ft_putstr_fd(char *s, int fd);
@@ -55,10 +75,13 @@ int		ft_isdigit(int c);
 int		ft_isboth(int c);
 
 // builtin
-int		ft_chdir_update(t_ast *ast);
-int		ft_echo(t_ast *ast);
-int		ft_exit(t_ast *ast);
+int		ft_chdir_update(t_astnode *ast);
+int		ft_echo(t_astnode *ast);
+int		ft_exit(t_astnode *ast);
 int		ft_pwd(void);
 int		ft_unset(t_node *env);
+
+// temp
+t_env   *env_search(char *search_key);
 
 #endif

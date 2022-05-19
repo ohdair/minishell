@@ -6,7 +6,7 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:17:49 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/10 16:51:21 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/19 17:44:08 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ static int	is_number(char *str)
 	return (0);
 }
 
-static int	check_arg(t_ast *ast)
+static int	check_arg(t_astnode *ast)
 {
 	unsigned char	exit_code;
 	char			*str;
 
-	str = ast->content;
+	str = ast->data;
 	if (is_number(*str))
 	{
 		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
-		ft_putstr_fd(ast->content, STDERR_FILENO);
+		ft_putstr_fd(ast->data, STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 		exit(255);
 	}
@@ -63,7 +63,7 @@ static int	check_arg(t_ast *ast)
 	return (0);
 }
 
-int	ft_exit(t_ast *ast)
+int	ft_exit(t_astnode *ast)
 {
 	write(1, "exit\n", 5);
 	if (ast)

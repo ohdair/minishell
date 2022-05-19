@@ -6,24 +6,28 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:59:43 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/10 17:30:39 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:34:17 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // g_envp 필요
-t_node *g_envp;
+extern t_info   g_info;
 
 int	ft_env(void)
 {
-	t_node	*env;
+	t_env	*env;
 
-	env = g_envp;
+	env = g_info.env;
 	while (env)
 	{
-		if (strchr(env->content, '=') != 0)
-			ft_putendl_fd(env->content, STDOUT_FILENO);
+		if (env->value)
+		{
+			ft_putendl_fd(env->key, STDOUT_FILENO);
+			ft_putendl_fd("=", STDOUT_FILENO);
+			ft_putendl_fd(env->value, STDOUT_FILENO);
+		}
 		env = env->next;
 	}
 	return (SUCCESS);
