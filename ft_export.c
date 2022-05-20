@@ -6,13 +6,33 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:01:28 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/19 17:44:05 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:37:22 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_info   g_info;
+extern t_info	g_info;
+
+static void	print_export(t_env	*env)
+{
+	while (env)
+	{
+		ft_putstr_fd("declare -x ", STDOUT_FILENO);
+		if (env->key)
+		{
+			ft_putstr_fd(env->key, STDOUT_FILENO);
+			if (env->value)
+			{
+				ft_putstr_fd("=\"", STDOUT_FILENO);
+				ft_putstr_fd(env->value, STDOUT_FILENO);
+				ft_putstr_fd("\"", STDOUT_FILENO);
+			}
+		}
+		env = env->next;
+		ft_putstr_fd("\n", STDOUT_FILENO);
+	}
+}
 
 int	check_envp_name(char *check)
 {
@@ -45,44 +65,24 @@ void	print_error(t_env *ast)
 	ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
 }
 
-static t_env	*new_envp(char *key, char *value)
-{
-	t_env	*result;
-
-	if (!ft_malloc((void **)&result, sizeof(t_env)))
-		return (NULL);
-	result->key = key;
-	result->value = value;
-	return (result);
-}
-
 int	set_envp(t_node *ast)
 {
-	t_env *g_envp;
-	
-	if (g_envp == NULL)
-	{
-		// new_envp() parsing에서 사용한 함수 가져오기
-		g_envp = new_envp();
-		if (g_envp == NULL)
-			return (MALLOC_FAIL);
-		return (SUCCESS);
-	}
-	// get_envp() ast->key 같과 같은 노드를 들고온다.
-	envp = env_search();
-	if (envp)
-	{
-		// value 값에 대한 거 삭제
-		ft_free(envp->content);
-		envp->content = value;
-		return (SUCCESS);
-	}
-	// ft_lstlast() ast 마지막 노드 들고오기
-	envp = ft_lstlast(g_envp);
-	// envp 에 새로운 노드로서 연결 시키기
-	envp->next = new_envp(value);
-	if (envp->next == NULL)
+	t_env	*new;
+	t_env	*old;
+
+	new = env_new(ast->content);
+	if (new == NULL)
 		return (MALLOC_FAIL);
+	old = env_search(new->key);
+	if (old)
+	{
+		if (old->value)
+			free(old->value);
+		old->value = ft_strdup(new->value);
+		free(new);
+		return (SUCCESS);
+	}
+	env_add_back(&(g_info.env), new);
 	return (SUCCESS);
 }
 
@@ -92,8 +92,7 @@ int	ft_export(t_astnode *ast)
 
 	status = SUCCESS;
 	if (!ast)
-		// evp 출력
-		print_env();
+		print_export(g_info.env);
 	while (ast)
 	{
 		if (check_envp_name(ast->data) == FAIL)

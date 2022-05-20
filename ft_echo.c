@@ -6,7 +6,7 @@
 /*   By: jaewpark <jaewpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:27:16 by jaewpark          #+#    #+#             */
-/*   Updated: 2022/05/19 17:43:58 by jaewpark         ###   ########.fr       */
+/*   Updated: 2022/05/20 15:01:21 by jaewpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_echo(t_astnode *ast)
 {
 	t_astnode	*cur;
-	int		option;
+	int			option;
 
 	option = 0;
 	cur = ast;
